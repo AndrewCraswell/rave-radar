@@ -253,11 +253,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ConnectionStringsQA.config" />
-    <None Include="Properties\PublishProfiles\RaveRadar - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RaveRadarPROD - Azure.pubxml" />
     <None Include="Properties\PublishProfiles\RaveRadarLOCAL.pubxml" />
-    <None Include="Properties\PublishProfiles\RaveRadarPROD.pubxml" />
-    <None Include="Properties\PublishProfiles\RaveRadarQA - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\RaveRadarQA.pubxml" />
+    <None Include="Properties\PublishProfiles\RaveRadarPROD - DiscountASP.pubxml" />
+    <None Include="Properties\PublishProfiles\RaveRadarQA - DiscountASP.pubxml" />
     <Content Include="Views\Shared\WelcomeModal.cshtml" />
     <Content Include="Views\Shared\MapErrorAlert.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
@@ -275,7 +274,7 @@
     <Content Include="Views\Shared\VenuePopover.cshtml" />
     <Content Include="Views\Shared\ClusterPopover.cshtml" />
     <Content Include="Views\Shared\FeedbackModal.cshtml" />
-    <None Include="Properties\PublishProfiles\RaverRadarQA Azure.pubxml" />
+    <None Include="Properties\PublishProfiles\RaveRadarQA - Azure.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
