@@ -1,0 +1,43 @@
+﻿@using RaveRadar.Models
+@using RaveRadar.Helpers
+@model IList<ClusterPinInfo>
+
+<strong>
+    @Model.Sum(c => c.Raves.Count()) Events at these Venues:
+</strong>
+<ul class="media-list popover-events-list">
+    @foreach (ClusterPinInfo cluster in Model)
+    {
+    <li class="media">
+        @{
+            string venueUrl = Html.GetFacebookProfileUrl(cluster.VenueID.ToString());
+            if (cluster.VenueID >= 0)
+            {
+                <a class="pull-left" href="@venueUrl" target="_blank"><img class="media-object" src="@cluster.PicURL" alt="" /></a>
+            }
+            else
+            {
+                <a class="pull-left" href="#"><img class="media-object" src="/Content/Images/defaultVenuePic.png" alt="" /></a>
+            }
+        }
+        <div class="media-body">
+            <h4 class="media-heading">
+                @if (cluster.VenueID >= 0)
+                {
+                    <a href="@venueUrl" target="_blank">@cluster.Location</a>
+                }
+                else
+                {
+                    @cluster.Location
+                }
+            </h4>
+            <p>
+                @foreach (RaveMeta rave in cluster.Raves)
+                {
+                    <a href="@Html.GetFacebookProfileUrl(rave.RaveID.ToString())" target="_blank"><img src="@rave.PicURL" class="venue-rave-icon pushpin-icon-frame" alt="" /></a>
+                }
+            </p>
+        </div>
+    </li>
+    }
+</ul>

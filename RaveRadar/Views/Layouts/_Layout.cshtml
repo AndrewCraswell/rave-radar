@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+        <title>@ViewBag.Title</title>
+    }
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta property="og:title" content="Rave Radar" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Url.Content("~")" />
+    <meta property="og:image" content="@Url.Content("~/favicon.ico")" />
+    <meta property="og:site_name" content="Rave Radar" />
+    <meta property="og:description" content="The easiest way to discover Electronic Dance Music (EDM) events near you!" />
+    <meta property="fb:admins" content="503796450" />
+    <meta property="fb:app_id" content="@System.Configuration.ConfigurationManager.AppSettings["RaveRadarAppId"]" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <!-- Favicon / Mobile Icons -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="@Url.Content("~/Content/Images/Mobile/apple-touch-icon-ipad.png")" /> 
+    <link rel="apple-touch-icon" sizes="114x114" href="@Url.Content("~/Content/Images/Mobile/apple-touch-icon-iphone4.png")" />
+    <link rel="apple-touch-icon" sizes="144x144" href="@Url.Content("~/Content/Images/Mobile/apple-touch-icon-ipad3.png")" />
+    <link rel="apple-touch-icon" href="@Url.Content("~/Content/Images/Mobile/apple-touch-icon-iphone.png")" />
+
+    <!-- iOS Startup Images -->
+    <link rel="apple-touch-startup-image" href="@Url.Content("~/Content/Images/Mobile/splash-screen-640x920.png")" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" /> <!-- iPhone/iPod Touch Portrait – 640 x 920 pixels (high-resolution) -->
+    <link rel="apple-touch-startup-image" sizes="768x1004" href="@Url.Content("~/Content/Images/Mobile/splash-screen-768x1004.png")" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"/> <!-- For iPad Portrait 768x1004 -->
+
+    <!-- Global Stylesheets -->
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/RaveRadar.css")" rel="stylesheet" type="text/css" />
+    <!-- Page Specific Resources and Scripts -->
+    @RenderSection("PageResources", false)
+</head>
+<body>
+
+
+    @RenderBody()
+
+
+    <!-- Scripts -->
+    <script>
+        var rootUrl = "@Url.Content("~/")";
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="@Url.Content("~/Scripts/jquery-1.8.3.min.js")">\x3C/script>')</script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script>$.fn.modal || document.write('<script src="@Url.Content("~/Scripts/bootstrap.min.js")">\x3C/script>')</script>
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-35718646-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    @RenderSection("PageScripts", false)
+</body>
+</html>

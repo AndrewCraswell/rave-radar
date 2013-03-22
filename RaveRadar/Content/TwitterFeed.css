@@ -1,0 +1,40 @@
+﻿#twitterFeedContainer {
+	position: absolute;
+	right: 0px;
+	z-index: 1003;
+}
+
+#twitterFeedContainer a:link a:visited {
+	color: rgb(98, 149, 250);
+}
+
+#twtr-widget-1 {
+	height: 100%;
+}
+
+.twtr-hd {
+	color: White;
+	background: rgb(50, 50, 50);
+	background: rgba(50, 50, 50, .9);
+	
+	[if lt IE 9] -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+	[if lt IE 9] filter: alpha(opacity=90);
+}
+
+.twtr-bd {
+	color: White;
+	background: rgb(40, 40, 40);
+	background: rgba(40, 40, 40, .8);
+	height: 100%;
+	
+	[if lt IE 9] -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	[if lt IE 9] filter: alpha(opacity=80);
+}
+.twtr-timeline, .twtr-tweets, .twtr-doc  {
+	height: 100%;
+}
+
+.twtr-ft 
+{
+	display: none;
+}

@@ -1,0 +1,50 @@
+﻿<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container" style="width: auto;">
+            <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="@Url.Action(string.Empty)" style="padding: 4px 24px 4px;"><img src="@Url.Content("~/Content/Images/icon_small.png")" style="width: 32px; height: 32px;" alt="" /> Rave Radar</a>
+
+            <div class="nav-collapse navbar-inverse-collapse collapse">
+                <ul class="nav">
+                    <li class="divider-vertical"></li>
+                    <li>
+                        <div class="btn-group">
+                            <div class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i class="icon-flag icon-white"></i><span id="SelectedCity" style="margin-left: 6px;">Seattle, WA</span><span class="caret" style="border-top-color: white; border-bottom-color: white; margin-left: 6px;"></span></div>
+                            <ul id="ddlCities" class="dropdown-menu">
+                                <!-- TODO: Automate this list -->
+                                <li><a href="#" data-lat="41.8500" data-long="-87.6500">Chicago, IL</a></li>
+                                <li><a href="#" data-lat="32.7828" data-long="-96.8039">Dallas, TX</a></li>
+                                <li><a href="#" data-lat="29.7631" data-long="-95.3631">Houston, TX</a></li>
+                                <li><a href="#" data-lat="34.0522" data-long="-118.2428">Los Angeles, CA</a></li>
+                                <li><a href="#" data-lat="40.7142" data-long="-74.0064">New York, NY</a></li>
+                                <li><a href="#" data-lat="33.45" data-long="-112.066667">Phoenix, AZ</a></li>
+                                <li><a href="#" data-lat="45.5236" data-long="-122.6750">Portland, OR</a></li>
+                                <li><a href="#" data-lat="47.6097" data-long="-122.3331" class="active">Seattle, WA</a></li>
+                                <li><a href="#" data-lat="49.2505" data-long="-123.1119">Vancouver, BC</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="divider-vertical"></li>
+			        <li class="active"><a href="#"><i class="icon-map-marker icon-white"></i> Raves</a></li>
+			        <li class="disabled"><a href="#"><i class="icon-glass icon-white"></i> Night Clubs</a></li>
+			        <li class="disabled"><a href="#"><i class="icon-home icon-white"></i> Hotels</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a class="feedback" href="#"><i class="icon-envelope icon-white"></i> Contact Us</a></li>
+                    <li class="divider-vertical"></li>
+		        </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Zoom In/Out/Locate controls -->
+<div class="btn-group btn-group-vertical hidden-phone map-controls">
+    <button id="zoomIn" class="btn btn-inverse btn-small"><i class="icon-zoom-in"></i></button>
+    <button id="zoomOut" class="btn btn-inverse btn-small"><i class="icon-zoom-out"></i></button>
+    <button id="locateUser" class="btn btn-inverse btn-small"><i class="icon-screenshot"></i></button>
+</div>

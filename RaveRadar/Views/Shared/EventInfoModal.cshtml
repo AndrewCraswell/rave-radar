@@ -1,0 +1,91 @@
+﻿@using RaveRadar.Helpers
+@model RaveRadar.Models.RavePinInfo
+
+@{
+    string raveUrl = Html.GetFacebookProfileUrl(Model.RaveID.ToString());
+}
+
+<div id="EventInfoModal" class="modal hide fade in info-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="InfoTitle"><a href="@raveUrl" target="_blank">@Model.Name</a></h4>
+    </div>
+    <div id="InfoContent" class="modal-body">
+        <ul class="rave-details">
+            <li class="date-details">
+                <ul class="details-list">
+                <li>
+                    <i class="icon-calendar" title="Event date"></i>
+                    <span>@Model.DateText</span>
+                </li>
+                @if (!String.IsNullOrWhiteSpace(Model.TimeText))
+                {
+                    <li>
+                        <i class="icon-time" title="Event time"></i>
+                        <span>@Model.TimeText</span>
+                    </li>
+                }
+                </ul>
+            </li>
+            <!--
+            <li class="rvsp-details">
+                <ul class="details-list">
+                <li>
+                    <i class="icon-ok" title="Attending"></i>
+                    <span></span>
+                </li>
+                <li>
+                    <i class="icon-envelope" title="Invited"></i>
+                    <span></span>
+                </li>
+                </ul>
+            </li>
+            -->
+            <li class="venue-details">
+                @if (Model.VenueID >= 0)
+                {
+                <i class="icon-map-marker" title="Location"></i>
+                <span>Taking place at <a href="@Html.GetFacebookProfileUrl(Model.VenueID.ToString())">@Model.Location</a></span>
+                }
+                else
+                {
+                <i class="icon-map-marker" title="Location"></i>
+                <span>Taking place at @Model.Location</span>
+                }
+            </li>
+            <li class="host-details">
+                <i class="icon-user" title="Host"></i>
+                <span>Hosted by <a href="@Html.GetFacebookProfileUrl(Model.OwnerID.ToString())">@Model.OwnerName</a></span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-left">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle disabled btn-mini" data-toggle="dropdown" href="#">
+                    <i class="icon-share"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-twitter"></i> Tweet Event</a></li>
+                    <li><a href="#"><i class="icon-facebook"></i> Share Event</a></li>
+                    <li><a href="#"><i class="icon-plus"></i> Invite Friends</a></li>
+                    <li><a href="#"><i class="icon-asterisk"></i> Invite All Friends</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn disabled btn-mini">Join</button>
+                <button class="btn dropdown-toggle disabled btn-mini" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Maybe</a></li>
+                    <li><a href="#">Decline</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-small" data-dismiss="modal" aria-hidden="true">Close</button>
+            <a id="EventURL" class="btn btn-info btn-small" href="@raveUrl" target="_blank" aria-hidden="true">Facebook Event</a>
+        </div>
+    </div>
+</div>

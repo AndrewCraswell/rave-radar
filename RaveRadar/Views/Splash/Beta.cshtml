@@ -1,0 +1,74 @@
+﻿@model RaveRadar.Data.Types.Subscription
+
+@{
+    ViewBag.Title = "Rave Radar | Welcome!";
+    Layout = "~/Views/Layouts/_SplashLayout.cshtml";
+ }
+
+
+<div class="hero-unit" style="padding-bottom: 0px; margin-bottom: 10px;">
+    <div class="row-fluid">
+        <div class="thumbnail span2">
+        <img src="@Url.Content("~/Content/Images/icon_full.png")" alt="Rave Radar" />
+        </div>
+        <div class="span10 splash-text">
+            <h1>Rave Radar</h1>
+            <h3>Discover Electronic Dance Music events near you!</h3>
+        </div>
+    </div>
+    <div class="row-fluid splash-text" style="margin-top: 20px;">
+        <h3>Sign up for Beta access!</h3>
+        @using (Ajax.BeginForm("Beta", "Splash", new AjaxOptions { UpdateTargetId = "alertContainer", InsertionMode = InsertionMode.Replace }))
+        {
+            <div>
+                @Html.TextBoxFor(m => m.Name, new {
+                        maxlength = "32",
+                        placeholder = "Name (optional)" })
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Email, new { 
+                        maxlength = "32",
+                        type = "email",
+                        required = "true",
+                        placeholder = "Email" })
+            </div>
+            <div>
+                <input type="submit" value="Join the party!" class="btn-success btn-large" />
+            </div>
+        }
+    </div>
+</div>
+
+
+<div id="alertContainer" style="left: 60px; position: absolute;">
+</div>
+
+
+@section PageScripts {
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")" type="text/javascript"></script>
+    @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage) || !String.IsNullOrEmpty(ViewBag.SuccessMessage))
+    {
+        <script type="text/javascript">
+            $(function () {
+                $('.alert').fadeIn();
+
+                if (!Modernizr.input.placeholder) {
+                    $("input").each(
+                    function () {
+                        if ($(this).val() == "" && $(this).attr("placeholder") != "") {
+                            $(this).val($(this).attr("placeholder"));
+                            $(this).focus(function () {
+                                if ($(this).val() == $(this).attr("placeholder")) $(this).val("");
+                            });
+                            $(this).blur(function () {
+                                if ($(this).val() == "") $(this).val($(this).attr("placeholder"));
+                            });
+                        }
+                    });
+
+                }
+            });
+        </script>
+    }
+}

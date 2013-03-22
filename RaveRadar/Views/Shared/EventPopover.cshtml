@@ -1,0 +1,49 @@
+﻿@using RaveRadar.Helpers
+@model RaveRadar.Models.RavePinInfo
+
+@{
+    string raveUrl = Html.GetFacebookProfileUrl(Model.RaveID.ToString());
+}
+
+
+<strong>
+    <a href="@raveUrl" target="_blank">@Model.Name</a>:
+</strong>
+
+
+<div class="media popover-event">
+    <a class="pull-left" href="@raveUrl" target="_blank">
+        <img class="media-object" src="@Model.PicURL" alt="" />
+    </a>
+    <div class="media-body">
+        <p class="popover-details">
+            <span>
+                <i class="icon-calendar"></i>
+                @Model.DateText
+            </span>
+            <span>
+                @if (!String.IsNullOrWhiteSpace(Model.TimeText))
+                {
+                <i class="icon-time"></i>
+                @Model.TimeText
+                }
+            </span>
+            <span>
+                <i class="icon-map-marker"></i> At
+                @if (Model.VenueID >= 0)
+                {
+                <a href="@Html.GetFacebookProfileUrl(Model.VenueID.ToString())" target="_blank">
+                    @Model.Location
+                </a>
+                }
+                else
+                {
+                @Model.Location
+                }
+            </span>
+            <span>
+                <i class="icon-user"></i> By <a href="@Html.GetFacebookProfileUrl(Model.OwnerID.ToString())" target="_blank">@Model.OwnerName</a>
+            </span>
+        </p>
+    </div>
+</div>

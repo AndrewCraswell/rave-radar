@@ -1,0 +1,299 @@
+﻿/* Main Interface */
+
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+	-webkit-touch-callout: none;
+    -moz-touch-callout: none;
+}
+
+.rave-map {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    padding: 0px;
+}
+
+.align-content-top {
+    top: 40px;
+}
+
+.align-content-bottom {
+    bottom: 41px;
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.map-controls {
+    z-index: 1025;
+    position: fixed; 
+    top: 44px; 
+    left: 3px; 
+    float: left;
+}
+
+@media (max-width: 979px) {
+    .align-content-top {
+        top: 51px;
+    }
+
+    .map-controls {
+        top: 55px;
+    }
+}
+
+@media (max-width: 767px) {
+    .align-content-bottom {
+        bottom: 0px;
+    }
+}
+
+
+/* Map Elements */
+
+.pushpin-icon {
+	width: 32px;
+	height: 32px;
+	pointer-events: all;
+	cursor: pointer;
+    border: 0px solid black !important;
+    -moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+    -moz-box-shadow: 0 0 1px 2px #333;
+    -webkit-box-shadow: 0 0 1px 2px #333;
+    box-shadow: 0 0 1px 2px #333;
+}
+
+pushpin-selected {
+    -moz-box-shadow: 0 0 2px 2px #DD3333;
+    -webkit-box-shadow: 0 0 2px 3px #DD3333;
+    box-shadow: 0 0 2px 2px #DD3333;
+}
+
+.alert-map {
+    z-index: 1050;
+    position: absolute;
+    left: 6px;
+    margin-right: 6px;
+    margin-top: 6px;
+    display: none;
+}
+
+.alert-notify-circle {
+	float:left;
+	background: radial-gradient( center -9px, circle closest-side, white 0, red 26px );
+	background: -moz-radial-gradient( center -9px, circle closest-side, white 0, red 26px );
+	background: -ms-radial-gradient( center -9px, circle closest-side, white 0, red 26px );
+	background: -o-radial-gradient( center -9px, circle closest-side, white 0, red 26px );
+	background: -webkit-radial-gradient( center -9px, circle, white 0, red 26px );
+	background-color: red;
+	border: 2px solid white;
+	border-radius: 15px;
+	box-shadow: 1px 1px 2px black;
+	color: white;
+	font: 11px Helvetica, Verdana, Tahoma;
+	font-weight: 400;
+	line-height: 13px;
+	padding-left: 4px;
+	padding-right: 4px;
+	text-align: center;
+	z-index: 1;
+	pointer-events: all;
+	cursor: pointer;
+	-webkit-user-select: none;
+}
+    
+.notify-upper-left {
+	position: relative;
+	top: -6px;
+	right: 25%;
+}
+
+.pushpin-icon-frame {
+    box-shadow: 0 0 1px 1px #333;
+}
+
+.venue-rave-icon {
+    -moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    margin: 0px 1px 0px 1px;
+}
+
+.ribbon-wrapper-red {
+  width: 105px;
+  height: 108px;
+  position: absolute;
+  top: 0px;
+  right: -6px;
+  float: left;
+  z-index: 1051;
+}
+
+.ribbon-red {
+  font: bold 16px Sans-Serif;
+  color: #333;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 7px 0;
+  left: -5px;
+  top: 20px;
+  width: 138px;
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45)); 
+  background-image: -webkit-linear-gradient(top, #BF0000, #8E0000); 
+  background-image:    -moz-linear-gradient(top, #BF0000, #8E0000); 
+  background-image:     -ms-linear-gradient(top, #BF0000, #8E0000); 
+  background-image:      -o-linear-gradient(top, #BF0000, #8E0000); 
+  color: #ededed;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+
+
+/* Shared Info Modal Properties */
+.info-modal {
+  max-width: 450px;
+}
+
+.info-modal .modal-body {
+  overflow-y: auto;
+}
+
+.info-modal .modal-footer {
+  text-align: left;
+  padding: 6px;
+}
+
+.info-modal h4 {
+  margin: 0px;
+}
+
+.rave-details {
+  margin-left: 0px;
+  list-style-type: none;
+}
+
+.details-list  {
+  margin-left: 0px;
+  list-style-type: none;
+}
+
+li .details-list {
+  display: inline-block;
+}
+
+.details-list > li {
+  float: left;
+}
+
+
+/* Event Info Modal */
+#EventInfoModal .modal-header {
+    padding-bottom: 0px;
+}
+
+#EventInfoModal .rave-details > li {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#EventInfoModal .details-list:first-child li:first-child {
+  margin-right: 30px;
+}
+
+#EventInfoModal .date-details {
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 10px;
+}
+
+
+/* Venue Info Modal */
+#VenueInfoModal {
+    max-width: 485px;
+}
+
+#VenueInfoModal .details-list:first-child li:first-child {
+  margin-right: 20px;
+}
+
+#VenueInfoModal .modal-header { 
+    border-color: #D8D8D8; 
+}
+
+#VenueInfoModal .modal-body {
+    padding: 5px 15px 0px 15px;
+} 
+
+#VenueInfoModal .media-heading {
+    margin-bottom: 2px;
+}
+
+#VenueInfoModal .media {
+    border-top: 1px solid #DDD;
+    margin: 0px;
+    padding: 7px 0px 7px 0px;
+}
+
+#VenueInfoModal .media:first-child { 
+    padding-top: 0px;
+    border-top: none;
+}
+
+
+/* Popovers */
+div.popover-event {
+    margin-top: 10px;
+}
+
+ul.popover-events-list {
+    margin-top: 10px;
+}
+
+.popover-details > span {
+    display: block;
+}
+
+
+/* Feedback Modal */
+#FeedbackModal .modal-body {
+    padding: 5px 15px 10px 15px;
+}
+
+#FeedbackModal .stretched-input {
+    padding-right: 15px;
+}
+
+#FeedbackModal span {
+    display: block;
+}
+
+#FeedbackModal .area-text {
+    margin-bottom: 10px;
+}
+
+#FeedbackModal input:not([type=submit]) { 
+    width: 100%;
+}
+
+#FeedbackModal textarea { 
+    width: 100%;
+    -moz-resize: vertical;
+    resize: vertical;
+    max-height: 200px;
+}
+

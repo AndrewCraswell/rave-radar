@@ -1,0 +1,137 @@
+﻿@using RaveRadar.Helpers;
+
+@{
+    ViewBag.Title = "Rave Radar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool isSmallMobile = Request.Browser.IsMobileDevice && Request.Browser.ScreenPixelsWidth < 700;
+ }
+
+@section PageResources {
+    <link href="@Url.Content("~/Content/add2home.css")" rel="stylesheet" />
+
+    @if (isSmallMobile)
+    {
+        <style>
+            .raveMap {
+                top: 0px;
+                bottom: 57px;
+            }
+        </style>
+    }
+    <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Map/RaveMapGlobals.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Map/pin_clusterer.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/date.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Popups.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Map/RaveRadarMap.js")" type="text/javascript"></script>-
+    <script>
+        // On page load
+        $(document).ready(function () {
+            $.when(initRaveRadarMap('@System.Configuration.ConfigurationManager.AppSettings["BingMapsKey"]')).done(function () {
+                var geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(raveMap);
+                geoLocationProvider.getCurrentPosition({ maximumAge: 300000, showAccuracyCircle: false, successCallback: function (result) {
+                    raveMap.setView({ zoom: (defaultZoom + 2) });
+                }
+                });
+
+                // Show welcome dialog
+                openWelcomePopup();
+            });
+        });
+    </script>
+
+    @* All page events *@
+    <script>
+        $("#btnClosePopup").live("click tap", function () {
+            closePopups();
+        });
+    </script>
+}
+
+
+<div data-role="page">
+
+    <!-- HEADER -->
+    @if (!isSmallMobile)
+    {
+    <div data-role="header" data-position="fixed">
+	    <div class="ui-btn-left" data-role="controlgroup" data-iconpos="left" data-type="horizontal">
+		    <label for="ddlCity" class="select">City:</label>
+		    <select name="ddlCity" id="ddlCity">
+		       <option value="All">All Cities</option>
+		    </select>
+		    <a href="#" data-role="button">Filter Dates</a>
+	    </div>	
+	    <h1>Rave Radar</h1>
+	    <div class="ui-btn-right" data-role="controlgroup" data-iconpos="left" data-type="horizontal">
+		    <a href="#" data-role="button" data-icon="gear">Login</a>
+	    </div>
+	    <div data-role="navbar" data-iconpos="left">
+		    <ul>
+			    <li><a href="#" data-icon="grid" class="ui-btn-active">Raves</a></li>
+			    <li><a href="#" data-icon="grid" class="ui-disabled">Clubs</a></li>
+			    <li><a href="#" data-icon="home" class="ui-disabled">Hotels</a></li>
+		    </ul>
+	    </div><!-- /navbar -->
+    </div><!-- /header -->
+    }
+
+
+
+    <!-- CONTENT -->    
+    <div id="raveMapContainer" class="raveMap" data-role="content"></div>
+    <!-- /CONTENT -->
+     
+
+
+
+    <!-- FOOTER -->
+    <div data-role="footer" id="footer" data-position="fixed">
+    @if (isSmallMobile)
+    {
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+			    <li><a href="#" data-icon="grid" class="ui-btn-active">Raves</a></li>
+			    <li><a href="#" data-icon="grid" class="ui-disabled">Clubs</a></li>
+			    <li><a href="#" data-icon="home" class="ui-disabled">Hotels</a></li>
+                <li><a href="#" data-icon="gear" class="ui-disabled">Me</a></li>
+		    </ul>
+        </div>
+    }
+    else
+    {
+        string version = Html.AppVersion();
+        <p style="padding-right: 10px; float: right;">Version @version.Remove(version.Length - 2) Beta</p>
+    }
+    </div><!-- /footer -->
+
+</div>
+
+
+<div id="welcomePopup" class="dialog" data-role="popup" data-corners="true">
+	<div data-role="header" class="ui-corner-top">
+		<h1>Welcome to Rave Radar!</h1>
+	</div>
+	<div data-role="content">
+		<p>Keep up to date with clubs and events near you!</p>
+        <p><strong>Updates:</strong> Follow the project on <a href="https://www.facebook.com/RaverRadar">Facebook</a>, or via <a href="https://twitter.com/RaveRadarDev" target="_blank">@@RaveRadarDev</a>.</p>
+        <p><strong>Promoter?</strong> Don't see your events? Contact me on <a href="https://www.facebook.com/AndrewCraswell" target="_blank">Facebook</a>, via <a href="https://twitter.com/AndrewCraswell" target="_blank">Twitter</a>, or <a href="http://lnkd.in/PiZgXK" target="_blank" >LinkedIn</a>.</p>
+        <p><span style="color: Red;">WARNING: The site is still under development, expect errors!</p>
+	</div>
+    <a href="#" id="btnClosePopup" data-role="button" data-inline="true" data-transition="flow" data-theme="b" data-mini="true">Continue</a>
+	<a href="@System.Configuration.ConfigurationManager.AppSettings["DonateURL"]" target="_blank" data-role="button" data-inline="true" data-transition="flow" data-mini="true">Donate</a>  
+</div>
+
+<div id="infoBoxPopup" data-role="popup" data-corners="true">
+    <div data-role="header" class="ui-corner-top">
+		    <h1 id="infoBoxTitle">Welcome to Rave Radar!</h1>
+	    </div>
+	    <div data-role="content">
+		    <span id="infoBoxContent"></span>
+	    </div>
+         <a href="#" id="btnClosePopup" data-role="button" data-inline="true" data-transition="flow" data-theme="b" data-mini="true">Close</a>
+</div>
+
+<div id="errorMessagePopup" class="dialog" data-role="popup" data-corners="true" style="color: Red;">
+    <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span><span style="color: Red;"><strong>Error:</strong> There's a problem with some of the data that was going to be delivered. Unfortunately we can't display it right now.</span></p>
+</div>

@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+
+@section PageResources {
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <link href="@Url.Content("~/Content/elusive-webfont.custom.min.css")" rel="stylesheet" />
+    @RenderSection("PageResources", false)
+}
+
+
+
+<!-- HEADER -->
+@Html.Partial("Header")
+
+<!-- BODY -->
+@RenderBody()
+
+<!-- FOOTER -->
+@Html.Partial("Footer")
+
+
+<!-- Modals/Alerts -->
+<div id="ModalContainer" data-map-error-url="@Url.Action("MapErrorAlert", "Map")"
+                         data-welcome-url="@Url.Action("WelcomeModal", "Map")"
+                         data-events-url="@Url.Action("EventInfoModal", "Map")"
+                         data-feedback-url="@Url.Action("FeedbackModal", "Map")">
+</div>
+
+
+
+@section PageScripts {
+    @RenderSection("PageScripts", false)
+}

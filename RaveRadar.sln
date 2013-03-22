@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaveRadar", "RaveRadar\RaveRadar.csproj", "{BEA5C5F5-B9C4-4D26-AD9E-805CCB4C91FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEA5C5F5-B9C4-4D26-AD9E-805CCB4C91FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA5C5F5-B9C4-4D26-AD9E-805CCB4C91FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA5C5F5-B9C4-4D26-AD9E-805CCB4C91FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA5C5F5-B9C4-4D26-AD9E-805CCB4C91FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

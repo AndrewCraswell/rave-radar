@@ -1,0 +1,37 @@
+﻿@using RaveRadar.Helpers
+@using RaveRadar.Models
+@model IList<RavePinInfo>
+
+<strong>
+    @Model.Count Events at <a href="@Html.GetFacebookProfileUrl(Model[0].VenueID.ToString())" target="_blank">@Model[0].Location</a>:
+</strong>
+
+<ul class="media-list popover-events-list">
+    @foreach (RavePinInfo rave in Model)
+    {
+    string raveUrl = Html.GetFacebookProfileUrl(rave.RaveID.ToString());
+    <li class="media popover-event">
+        <a class="pull-left" href="@raveUrl" target="_blank">
+            <img class="media-object" src="@rave.PicURL" alt="" />
+        </a>
+        <div class="media-body">
+            <a href="@raveUrl" target="_blank">
+                <h4 class="media-heading">@rave.Name</h4>
+            </a>
+            <p class="popover-details">
+                <span>
+                    <i class="icon-calendar"></i> 
+                    @rave.DateText
+                </span>
+                @if (!String.IsNullOrWhiteSpace(rave.TimeText))
+                {
+                <span>
+                    <i class="icon-time"></i> 
+                    @rave.TimeText
+                </span>
+                }
+            </p>
+        </div>
+    </li>
+    }
+</ul>

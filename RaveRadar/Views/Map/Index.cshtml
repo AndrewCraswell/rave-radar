@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Rave Radar";
+    Layout = "~/Views/Layouts/_InterfaceLayout.cshtml";
+ }
+
+@section PageResources {
+    <link href="@Url.Content("~/Content/TwitterFeed.ashx")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/jquery.qtip.css")" rel="stylesheet" />
+}
+ 
+<div id="content">
+    <!-- Rave Map -->
+    <div id="raveMapContainer" class="rave-map align-content-top align-content-bottom"></div>
+</div>
+
+
+
+@section PageScripts {
+    <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/spin.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Map/RaveRadarMap.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Map/pin_clusterer.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.qtip.min.js")" type="text/javascript"></script>
+    <script>
+        // TODO: Move this into separate file
+        $.fn.spin = function (opts) {
+            this.each(function () {
+                var $this = $(this),
+                    data = $this.data();
+
+                if (data.spinner) {
+                    data.spinner.stop();
+                    delete data.spinner;
+                }
+                if (opts !== false) {
+                    data.spinner = new Spinner($.extend({ color: $this.css('color') }, opts)).spin(this);
+                }
+            });
+            return this;
+        };
+
+        // On page load
+        $(function () {
+            showWelcomeModal();
+
+            // Bind hover events to display event info in a popover
+            bindPopovers();
+
+            $.when(initRaveRadarMap('@System.Configuration.ConfigurationManager.AppSettings["BingMapsKey"]')).done(function () {
+                // Focus on the default city
+                var selectedCity = $('#ddlCities .active').first();
+                centerMapOnCoords($(selectedCity).data('lat'), $(selectedCity).data('long'));
+            });
+        });
+    </script>         
+}

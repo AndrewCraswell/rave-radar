@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section PageResources {
+    <style>
+        .splash-text { 
+            text-shadow: 0px 0px 4px #000, 0px 0px 4px #000, 0px 0px 4px #000;
+            color: #FFF;
+        }
+        .hero-unit {
+            background-color: transparent;
+        }
+        .thumbnail {
+            border: none;
+        }
+    </style>
+    @RenderSection("PageResources", false)
+}
+
+
+
+@RenderBody()
+
+
+
+@section PageScripts {
+    <script src="@Url.Content("~/Scripts/jquery.backstretch.min.js")"></script>
+    <script type="text/javascript">
+        $.backstretch("@Url.Content("~/Content/Images/Splash.jpg")");
+    </script>
+    @RenderSection("PageScripts", false)
+}

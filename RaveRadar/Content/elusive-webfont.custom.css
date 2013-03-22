@@ -1,0 +1,109 @@
+@font-face {
+	font-family: 'Elusive-Webfont-Custom';
+	src:url('Font/Elusive-Webfont-Custom.eot');
+	src:url('Font/Elusive-Webfont-Custom.eot?#iefix') format('embedded-opentype'),
+		url('Font/Elusive-Webfont-Custom.svg#Elusive-Webfont-Custom') format('svg'),
+		url('Font/Elusive-Webfont-Custom.woff') format('woff'),
+		url('Font/Elusive-Webfont-Custom.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'Elusive-Webfont-Custom';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.icon-zoom-in:before, .icon-search:before, .icon-ok:before, .icon-map-marker:before, .icon-align-justify:before, .icon-heart-empty:before, .icon-glass:before, .icon-flag:before, .icon-envelope:before, .icon-cog:before, .icon-calendar:before, .icon-edit:before, .icon-heart:before, .icon-asterisk:before, .icon-ban-circle:before, .icon-facebook:before, .icon-group:before, .icon-lock:before, .icon-retweet:before, .icon-screenshot:before, .icon-share:before, .icon-zoom-out:before, .icon-remove:before, .icon-home:before, .icon-user:before, .icon-time:before, .icon-twitter:before {
+	font-family: 'Elusive-Webfont-Custom';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-zoom-in:before {
+	content: "\e001";
+}
+.icon-search:before {
+	content: "\e03e";
+}
+.icon-ok:before {
+	content: "\e070";
+}
+.icon-map-marker:before {
+	content: "\e07a";
+}
+.icon-align-justify:before {
+	content: "\e0d8";
+}
+.icon-heart-empty:before {
+	content: "\e0e1";
+}
+.icon-glass:before {
+	content: "\e0e4";
+}
+.icon-flag:before {
+	content: "\e0e6";
+}
+.icon-envelope:before {
+	content: "\e0eb";
+}
+.icon-cog:before {
+	content: "\e109";
+}
+.icon-calendar:before {
+	content: "\e10b";
+}
+.icon-edit:before {
+	content: "\e0ed";
+}
+.icon-heart:before {
+	content: "\e0b1";
+}
+.icon-asterisk:before {
+	content: "\e0ac";
+}
+.icon-ban-circle:before {
+	content: "\e0aa";
+}
+.icon-facebook:before {
+	content: "\e09c";
+}
+.icon-group:before {
+	content: "\e091";
+}
+.icon-lock:before {
+	content: "\e07e";
+}
+.icon-retweet:before {
+	content: "\e045";
+}
+.icon-screenshot:before {
+	content: "\e03f";
+}
+.icon-share:before {
+	content: "\e03c";
+}
+.icon-zoom-out:before {
+	content: "\e000";
+}
+.icon-remove:before {
+	content: "\e04e";
+}
+.icon-home:before {
+	content: "\e0e0";
+}
+.icon-user:before {
+	content: "\e013";
+}
+.icon-time:before {
+	content: "\e01f";
+}
+.icon-twitter:before {
+	content: "\e018";
+}

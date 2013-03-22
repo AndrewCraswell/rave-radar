@@ -1,0 +1,90 @@
+﻿@using RaveRadar.Helpers
+@using RaveRadar.Models
+@model IList<RavePinInfo>
+
+<div id="VenueInfoModal" class="modal hide fade in info-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 id="InfoTitle">@Model.Count Events at <a href="#" target="_blank">@Model[0].Location</a>:</h4>
+    </div>
+    <div id="InfoContent" class="modal-body">
+        <ul class="media-list">
+            @foreach (RavePinInfo rave in Model)
+            {
+                string raveUrl = Html.GetFacebookProfileUrl(rave.RaveID.ToString());
+                <text>
+                <li class="media">
+                    <a class="pull-left" href="@raveUrl">
+                        <img class="media-object" src="@rave.PicURL">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <span>
+                                <a href="@raveUrl" target="_blank">@rave.Name</a>
+                            </span>
+                        </h5>
+                        <ul class="rave-details">
+                            @if (!String.IsNullOrWhiteSpace(rave.TimeText))
+                            {
+                            <li class="date-details">
+                                <ul class="details-list">
+                                    <li>
+                                        <i class="icon-calendar" title="Event date"></i>
+                                        <span>@rave.DateText</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon-time" title="Event time"></i>
+                                        <span>@rave.TimeText</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            }
+                            else
+                            {
+                            <li class="date-details">
+                                <i class="icon-calendar" title="Event date"></i>
+                                <span>@rave.DateText</span>
+                            </li>
+                            }
+                            <li class="venue-details">
+                                @if (rave.VenueID >= 0)
+                                {
+                                <text>
+                                <i class="icon-map-marker" title="Location"></i>
+                                <span>At <a href="@Html.GetFacebookProfileUrl(rave.VenueID.ToString())" target="_blank">@rave.Location</a></span>
+                                </text>
+                                }
+                                else
+                                {
+                                <text>
+                                <i class="icon-map-marker" title="Location"></i>
+                                <span>At @rave.Location</span>
+                                </text>
+                                }
+                            </li>
+                            <li>
+                                <button id="seeEventInfo" data-event-id="@rave.ID" class="btn btn-mini">See More</button>
+                                <a href="@raveUrl" target="_blank" class="btn btn-mini btn-info">Facebook Event</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                </text>
+            }
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#VenueInfoModal').on('click', '#seeEventInfo', function () {
+            $('#VenueInfoModal').modal('hide');
+            showEventInfoModal($(this).data('event-id'));
+        });
+    });
+</script>

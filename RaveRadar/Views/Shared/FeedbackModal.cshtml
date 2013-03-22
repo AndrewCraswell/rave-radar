@@ -1,0 +1,72 @@
+﻿@model RaveRadar.Models.Feedback
+
+<div id="FeedbackModal" class="modal hide fade in info-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>Send Us Feedback!</h4>
+    </div>
+    <div class="modal-body">
+        @using (Ajax.BeginForm("FeedbackModal", "Map", new AjaxOptions { OnComplete = "ValidationResponse" }))
+        {
+            <div class="area-text">
+                <span>Leave a name and email if you want a response.</span>
+                <span>We'll try to get back to you as soon as we can!</span>
+            </div>
+            <div class="stretched-input">
+                @Html.TextBoxFor(m => m.Name, new {
+                        maxlength = "32",
+                        placeholder = "Name (optional)" })
+            </div>
+            <div class="stretched-input">
+                @Html.TextBoxFor(m => m.Email, new { 
+                        maxlength = "32",
+                        type = "email",
+                        placeholder = "Email (optional)" })
+            </div>
+            <div class="stretched-input">
+                @Html.TextAreaFor(m => m.Message, new { 
+                        maxlength = "512",
+                        required = "true",
+                        placeholder = "Message" })
+            </div>
+            <div>
+                <input type="submit" value="Send" class="btn-success btn" />
+                <button class="btn btn-primary" data-dismiss="modal">Nevermind</button>
+            </div>
+        }
+        
+        <div id="alertContainer"></div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        if (!Modernizr.input.placeholder) {
+            $("input").each(
+            function () {
+                if ($(this).val() == "" && $(this).attr("placeholder") != "") {
+                    $(this).val($(this).attr("placeholder"));
+                    $(this).focus(function () {
+                        if ($(this).val() == $(this).attr("placeholder")) $(this).val("");
+                    });
+                    $(this).blur(function () {
+                        if ($(this).val() == "") $(this).val($(this).attr("placeholder"));
+                    });
+                }
+            });
+
+        }
+    });
+
+    function ValidationResponse(response) {
+        if (response.responseText.length > 0) {
+            $('#alertContainer').html(response.responseText);
+            $('.alert-message').fadeIn();
+        }
+        else {
+            $('#FeedbackModal').modal('hide');
+        }
+    }
+</script>

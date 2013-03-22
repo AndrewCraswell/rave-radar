@@ -1,0 +1,48 @@
+﻿@using RaveRadar.Helpers;
+
+@{
+    string version = Html.AppVersion();
+}
+<div id="WelcomeModal" class="modal hide fade in" style="background-color: black; max-width: 528px;">
+    <div class="modal-body" style="padding: 0px; overflow: hidden; background-color: #000;">
+        <div id="newsCarousel" class="carousel slide" style="margin: 0px;">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="@Url.Content("~/Content/Images/Carousel/img01.jpg")" alt="">
+                    <div class="carousel-caption">
+                        <h4>Welcome!</h4>
+                        <p>Rave Radar is an ongoing project based in Seattle which aims to keep you up to speed with all the EDM and Night Club events happening near you! We're still in early stages of development, so expect some broken functionality.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Content/Images/Carousel/img02.jpg")" alt="">
+                    <div class="carousel-caption">
+                        <h4>Updates</h4>
+                        <p>We're constantly updating the site with fixes and new features. Get real-time news by connecting with us on <a href="http://www.facebook.com/RaverRadar" target="_blank">Facebook</a> and <a href="https://www.twitter.com/RaveRadarDev" target="_blank">Twitter</a>! Have some feedback? We love to hear from you!</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Content/Images/Carousel/img03.jpg")" style="height: 352px;" alt="">
+                    <div class="carousel-caption">
+                        <h4>Promoters & Night Clubs</h4>
+                        <p>Want to get your events listed for everyone to see? Rave Radar isn't like other event sites. We automatically sync to your Facebook events and display them without any work on your part. Contact us on <a href="http://www.facebook.com/RaverRadar" target="_blank">Facebook</a> or <a href="https://www.twitter.com/RaveRadarDev" target="_blank">Twitter</a> to get started!</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Content/Images/Carousel/img04.jpg")" alt="">
+                    <div class="carousel-caption">
+                        <h4>Support Us</h4>
+                        <p>Developing Rave Radar isn't free. We pay for hosting, development time, and design work. You can help us by telling your friends, following us on <a href="http://www.facebook.com/RaverRadar" target="_blank">Facebook</a> and <a href="https://www.twitter.com/RaveRadarDev" target="_blank">Twitter</a>, and even volunteering to help <a href="https://github.com/AndrewCraswell/rave-radar" target="_blank">develop the site</a>! Feeling generous? Buy the developers a <a href="https://www.wepay.com/donations/566961634" target="_blank">Red Bull</a>!</p>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#newsCarousel" data-slide="prev">‹</a>
+            <a class="right carousel-control" href="#newsCarousel" data-slide="next">›</a>
+            <div class="ribbon-wrapper-red"><div class="ribbon-red">Beta @version.Remove(version.Length - 2)</div></div>
+        </div>
+    </div>
+    <div class="modal-footer" style="padding: 10px; border: none; box-shadow: none; background-color: black;">
+        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Continue</button>
+        <a class="btn btn-primary" href="@System.Configuration.ConfigurationManager.AppSettings["DonateURL"]" target="_blank">Donate</a>
+    </div>
+</div>

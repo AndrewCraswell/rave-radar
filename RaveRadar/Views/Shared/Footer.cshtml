@@ -1,0 +1,18 @@
+﻿@using RaveRadar.Helpers;
+
+<div class="navbar navbar-fixed-bottom navbar-inverse hidden-phone">
+    <div class="navbar-inner">
+        <ul class="nav pull-right">
+            <li class="divider-vertical"></li>
+            <li><a class="feedback" href="#"><i class="icon-envelope icon-white"></i></a></li>
+            <li><a href="http://facebook.com/RaverRadar" target="_blank"><i class="icon-facebook icon-white"></i></a></li>
+            <li><a href="http://twitter.com/RaveRadarDev" target="_blank"><i class="icon-twitter icon-white"></i></a></li>
+            <li class="divider-vertical"></li>
+        
+            @{    
+            string version = Html.AppVersion();
+            <li class="navbar-text pull-right" style="padding-right: 10px;">Version @version.Remove(version.Length - 2) Beta</li>
+            }
+        </ul>
+    </div>
+</div>
