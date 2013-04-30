@@ -244,15 +244,15 @@
     <Content Include="Content\TwitterFeed.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Font\Elusive-Webfont-Custom.eot" />
-    <Content Include="Content\Font\Elusive-Webfont-Custom.ttf" />
-    <Content Include="Content\Font\Elusive-Webfont-Custom.woff" />
     <Content Include="AppSettingsPROD.config" />
     <Content Include="AppSettingsQA.config" />
     <Content Include="ConnectionStringsPROD.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ConnectionStringsQA.config" />
+    <Content Include="Content\Font\Elusive-Webfont-Custom.eot" />
+    <Content Include="Content\Font\Elusive-Webfont-Custom.ttf" />
+    <Content Include="Content\Font\Elusive-Webfont-Custom.woff" />
     <None Include="Properties\PublishProfiles\RaveRadarPROD - Azure.pubxml" />
     <None Include="Properties\PublishProfiles\RaveRadarLOCAL.pubxml" />
     <None Include="Properties\PublishProfiles\RaveRadarPROD - DiscountASP.pubxml" />
