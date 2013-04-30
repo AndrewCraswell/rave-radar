@@ -7,12 +7,10 @@ var defaultZoom = 4;
 $(function () {
     $('#zoomIn').click(function () {
         raveMap.setView({ zoom: raveMap.getZoom() + 1 });
-        hideMapSpinner();
     });
 
     $('#zoomOut').click(function () {
         raveMap.setView({ zoom: raveMap.getZoom() - 1 });
-        showMapSpinner();
     });
 
     $('#locateUser').click(function () {
@@ -98,7 +96,7 @@ function bindPopovers() {
                     solo: true,
                 },
                 hide: {
-                    event: 'click',
+                    event: 'mouseout',
                     delay: 300,
                     fixed: true,
                 },
