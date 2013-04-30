@@ -74,27 +74,37 @@ namespace RaveRadar.Helpers
                     else if (fqlEvent.venue.Count > 0)
                     {
                         aVenue = GetVenueFromJsonObject((JsonObject)fqlEvent.venue);
-                        if (aVenue != null) 
+                        if (aVenue == null) 
                         {
-                            // If no facebook page exists for this Venue, create a new negative ID
-                            // All negative ID's therefore show that the Venue does not exist on Facebook
-                            if (aVenue.VenueID == null)
-                            {
-                                using (RaveRadarContext _db = new RaveRadarContext())
-                                {
-                                    long dbMin = _db.Venues.Min(v => v.VenueID).GetValueOrDefault(0);
-                                    long syncMin = venueResults.Min(v => v.VenueID).GetValueOrDefault(0);
-                                    aVenue.VenueID = (dbMin <= syncMin ? dbMin : syncMin) - 1;
-                                }
-                            }
-                            venueResults.Add(aVenue); 
+                          // If no facebook page exists for this Venue, create a new negative ID
+                          // All negative ID's therefore show that the Venue does not exist on Facebook
+													aVenue = new Venue();
+                          using (RaveRadarContext _db = new RaveRadarContext())
+                          {
+                              long dbMin = _db.Venues.Min(v => v.VenueID).GetValueOrDefault(0);
+                              long syncMin = venueResults.Min(v => v.VenueID).GetValueOrDefault(0);
+                              aVenue.VenueID = (dbMin <= syncMin ? dbMin : syncMin) - 1;
+															aVenue.Name = fqlEvent.location ?? string.Empty;
+															aVenue.GetLocationFromGoogle(fqlEvent.location ?? string.Empty);
+
+															// If no location found, reset venue to null
+															if (aVenue.GetLocation() == null)
+															{
+																aVenue = null;
+															}
+                          }
                         }
+
+												if (aVenue != null)
+												{
+													venueResults.Add(aVenue);
+												}
                     }
 
                     // Before querying for the Rave, make sure we haven't already queried it
-                    if (raveResults.Any(r => r.VenueID == eventId))
+                    if (raveResults.Any(r => r.RaveID == eventId))
                     {
-                        aRave = raveResults.First(r => r.VenueID == eventId);
+                        aRave = raveResults.First(r => r.RaveID == eventId);
                     }
                     else
                     {

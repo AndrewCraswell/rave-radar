@@ -140,9 +140,9 @@ namespace RaveRadar.Types
                 string zip = Zip ?? string.Empty;
                 string country = Country ?? string.Empty;
                 string compositeAddress = Street + ((!String.IsNullOrEmpty(city)) ? ", " + city : string.Empty) +
-                                                                    ((!String.IsNullOrEmpty(state)) ? ", " + state : string.Empty) +
-                                                                    ((!String.IsNullOrEmpty(zip)) ? ", " + zip : string.Empty) +
-                                                                    ((!String.IsNullOrEmpty(country)) ? ", " + country : string.Empty);
+																										((!String.IsNullOrEmpty(state)) ? ", " + state : string.Empty) +
+																										((!String.IsNullOrEmpty(zip)) ? ", " + zip : string.Empty) +
+																										((!String.IsNullOrEmpty(country)) ? ", " + country : string.Empty);
 
                 // If we were able to get a decent address, try to find a geolocation
                 if (!String.IsNullOrEmpty(compositeAddress))
@@ -152,6 +152,15 @@ namespace RaveRadar.Types
                 }
             }
         }
+				public void GetLocationFromGoogle(string address)
+				{
+					// If a long/lat/city is unknown, try to get it from Google
+					if (!String.IsNullOrWhiteSpace(address))
+					{
+						Geocode location = Helpers.GoogleMapsAPIHelper.GetLocationFromAddress(address);
+						SetLocation(location);
+					}
+				}
 
         public void SetPicUrlToDefaultIcon()
         {
