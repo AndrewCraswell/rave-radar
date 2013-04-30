@@ -231,7 +231,7 @@ namespace RaveRadar.Helpers
         {
             Venue aVenue = null;
             
-            if (pageId != null || pageName != null)
+            if (pageId != null && pageName != null)
             {
                 _fb.AccessToken = _GenericAccessToken;
                 string whereClause = pageId == null ? String.Concat("name = '", pageName, "'") : String.Concat("page_id = '", pageId, "'");
